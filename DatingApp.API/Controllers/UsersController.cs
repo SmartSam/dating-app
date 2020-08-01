@@ -16,10 +16,10 @@ namespace DatingApp.API.Controllers
 
     public class UsersController : ControllerBase
     {
-        private readonly IDatingRespository _repo;
+        private readonly IDatingRepository _repo;
         private readonly IMapper _mapper;
 
-        public UsersController(IDatingRespository repo, IMapper mapper)
+        public UsersController(IDatingRepository repo, IMapper mapper)
         {
             this._mapper = mapper;
             this._repo = repo;
@@ -33,7 +33,7 @@ namespace DatingApp.API.Controllers
             return Ok(usersToReturn);
         }
 
-        
+
         [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
