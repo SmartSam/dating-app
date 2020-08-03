@@ -10,20 +10,21 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { RouterModule } from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { fromEventPattern } from 'rxjs';
 import { NavComponent } from './nav/nav.component';
-import {FormsModule} from '@angular/forms';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
-import { RouterModule } from '@angular/router';
 import {appRoutes} from './routes';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MembersDetailComponent } from './members/members-detail/members-detail.component';
@@ -60,10 +61,13 @@ export function tokenGetter() {
       HttpClientModule,
       BrowserAnimationsModule,
       FormsModule,
+      ReactiveFormsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FileUploadModule,
+      BrowserAnimationsModule,
+      BsDatepickerModule.forRoot(),
       JwtModule.forRoot({
          config: {
            tokenGetter,
