@@ -1,6 +1,6 @@
 # DatingApp
 
-Work-in-progress dating app when following course on Udemy.com with ASP.NET Core WebAPI (v3.1) and Angular (v9) with VSCode
+Work-in-progress dating app with ASP.NET Core WebAPI (v3.1) and Angular (v9) with VSCode
 
 ## WebAPI Development server
 
@@ -12,4 +12,4 @@ Run `ng serve` in DatingApp-SPA terminal. Navigate to `http://localhost:4200/`. 
 
 ## Database
 
-Currently using SQLite
+Currently using SQLite. DB Browser for SQLite is excellent tool to SQLite DBs. 
