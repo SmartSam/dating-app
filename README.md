@@ -12,4 +12,4 @@ Run `ng serve` in DatingApp-SPA terminal. Navigate to `http://localhost:4200/`. 
 
 ## Database
 
-Currently using SQLite. DB Browser for SQLite is excellent tool to SQLite DBs. 
+Currently using SQLite. FYI: "DB Browser for SQLite" is excellent tool for SQLite DBs. 
