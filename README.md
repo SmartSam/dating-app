@@ -16,4 +16,4 @@ Currently using SQLite. FYI: "DB Browser for SQLite" is an excellent tool for SQ
 
 ## Integration Tests
 
-Using NUnit for integration tests against an in-memory SQLite db.  The data is seeded from a json file on SetUp.  
+Using NUnit for integration tests against an in-memory SQLite db.  Data for this db is seeded from a json file on SetUp.  
