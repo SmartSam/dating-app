@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
-    //TODO: -IN PROGRESS Create Integration Tests
+    //TODO: -COMPLETED Create Integration Tests
     public class DatingRepository : IDatingRepository
     {
         private readonly DataContext _context;

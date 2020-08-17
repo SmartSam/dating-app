@@ -3,6 +3,7 @@ using DatingApp.API.Helpers;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,7 +41,7 @@ namespace NUnitTests
         public async Task GetUsers_Success()
         {
 
-            var userParams = new UserParams
+            UserParams userParams = new UserParams
             {
                 UserId = _dataContext.Users.First(x => x.Gender == "female").Id,
                 PageNumber = 1,
@@ -109,20 +110,79 @@ namespace NUnitTests
 
         }
 
-        //[Test]
-        //public async Task GetUserLikes_Success()
-        //{
-        //}
 
-        //[Test]
-        //public async Task GetMessage_Success()
-        //{
-        //}
+        [Test]
+        public async Task GetMessage_Success()
+        {
+            //arrange
+            var user = await _dataContext.Users.FirstAsync();
+            var recipient = await _dataContext.Users.FirstAsync(x => x.Id != user.Id);
+            var messageModel = new Message
+            {
+                SenderId = user.Id,
+                MessageSent = DateTime.Now,
+                RecipientId = recipient.Id,
+                IsRead = false,
+                Content = "Hello World"
+            };
 
-        //[Test]
-        //public async Task GetMessageForUser_Success()
-        //{
-        //}
+            await _dataContext.Messages.AddAsync(messageModel);
+            var messageId = await _dataContext.SaveChangesAsync();
+
+            //run
+            var result = await _datingRepository.GetMessage(messageId);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(user, result.Sender);
+            Assert.AreEqual(recipient, result.Recipient);
+
+        }
+
+        [Test]
+        public async Task GetMessageForUser_Success()
+        {
+            //arrange
+            var user = await _dataContext.Users.FirstAsync();
+            var recipient = await _dataContext.Users.FirstAsync(x => x.Id != user.Id);
+            var messageModel = new Message
+            {
+                SenderId = user.Id,
+                MessageSent = DateTime.Now,
+                RecipientId = recipient.Id,
+                IsRead = true,
+                Content = "Hello World",
+                DateRead = DateTime.Now,
+                SenderDeleted = false,
+                RecipientDeleted = false
+            };
+
+            await _dataContext.Messages.AddAsync(messageModel);
+
+            var messageModel2 = new Message
+            {
+                SenderId = recipient.Id,
+                MessageSent = DateTime.Now,
+                RecipientId = user.Id,
+                IsRead = false,
+                Content = "Hello you!"
+            };
+
+            await _dataContext.Messages.AddAsync(messageModel);
+            await _dataContext.SaveChangesAsync();
+
+            var messageParams = new MessageParams
+            {
+                PageNumber = 1,
+                PageSize = 5,
+                UserId = user.Id,
+                MessageContainer = "Outbox"
+            };
+
+            //run
+            var result = await _datingRepository.GetMessagesForUser(messageParams);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+
+        }
 
     }
 }
