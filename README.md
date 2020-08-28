@@ -16,4 +16,4 @@ The development configuration pionts to SQLite, and the production configuration
 
 ## Integration Tests
 
-Using NUnit for integration tests against the SQLite db.  Data for this db is seeded from a json file on SetUp.  
+Using NUnit for integration tests against the SQLite db.  Data for this db is seeded from a json file.  
