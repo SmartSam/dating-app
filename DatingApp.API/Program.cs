@@ -1,6 +1,8 @@
 using System;
 using DatingApp.API.Data;
+using DatingApp.API.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,16 +15,21 @@ namespace DatingApp.API
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope()){
+            using (var scope = host.Services.CreateScope())
+            {
                 var services = scope.ServiceProvider;
-                try{
-                      var context = services.GetRequiredService<DataContext>(); 
-                      context.Database.Migrate(); 
-                      Seed.SeedUsers(context);
+                try
+                {
+                    var context = services.GetRequiredService<DataContext>();
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    var roleManager = services.GetRequiredService<RoleManager<Role>>();
+                    context.Database.Migrate();
+                    Seed.SeedUsers(userManager, roleManager);
                 }
-                catch (Exception ex){
+                catch (Exception ex)
+                {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogDebug(ex, "An error occured during migration");   
+                    logger.LogDebug(ex, "An error occured during migration");
                 }
             }
             host.Run();

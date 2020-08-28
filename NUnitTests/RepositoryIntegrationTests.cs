@@ -1,6 +1,7 @@
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using DatingApp.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
@@ -18,15 +19,16 @@ namespace NUnitTests
         public void SetUp()
         {
             var options =
-                new DbContextOptionsBuilder<DataContext>().UseSqlite("DataSource=:memory:", x => { })
+                new DbContextOptionsBuilder<DataContext>().UseSqlite("DataSource=datingapp.db", x => { })
                     .Options;
 
             // new instance of ElectronicsContext will be created for every test.
             _dataContext = new DataContext(options);
             _dataContext.Database.OpenConnection();
             _dataContext.Database.EnsureCreated();
+            
             // Use _context to insert initial data required for the test
-            Seed.SeedUsers(_dataContext);
+            //Seed.SeedUsers(_dataContext);
             _datingRepository = new DatingRepository(_dataContext);
 
         }
