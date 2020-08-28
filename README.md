@@ -1,6 +1,6 @@
 # DatingApp
 
-Work-in-progress dating app with ASP.NET Core WebAPI (v3.1) and Angular (v9) with VSCode
+Work-in-progress dating app with ASP.NET Core WebAPI (v3.1) and Angular (v9) with vsCode
 
 ## WebAPI Development server - Kestrel
 
