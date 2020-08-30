@@ -72,7 +72,7 @@ namespace NUnitTests
         public async Task GetUser_Success()
         {
             var user = await _dataContext.Users.FirstAsync();
-            var result = await _datingRepository.GetUser(user.Id);
+            var result = await _datingRepository.GetUser(user.Id, false);
             Assert.IsNotNull(result);
             Assert.AreEqual(user.Id, result.Id);
         }
