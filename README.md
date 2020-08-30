@@ -1,6 +1,6 @@
 # DatingApp
 
-Work-in-progress dating app with ASP.NET Core WebAPI (v3.1) and Angular (v9) with VSCode
+Work-in-progress dating app with ASP.NET Core WebAPI (v3.1) and Angular (v9) with vsCode
 
 ## WebAPI Development server - Kestrel
 
@@ -12,8 +12,8 @@ Open another terminal window then cd to DatingApp-SPA and run: `ng serve`. Navig
 
 ## Database
 
-The development configuration pionts to SQLite, and the production configuration points to SQLServer. Database (datingapp.db) was setup with EF Core migrations. When changing from SQLite to SQLServer, and new set of migration has to be setup.  FYI: "DB Browser for SQLite" is an excellent tool for SQLite DBs. 
+The development configuration pionts to SQLite, and the production configuration points to SQLServer. Database (datingapp.db) was setup with EF Core migrations. When changing data providers (SQLite <=> SQLServer), a new migration has to be setup.  FYI: "DB Browser for SQLite" is an excellent tool for SQLite DBs. 
 
 ## Integration Tests
 
-Using NUnit for integration tests against an in-memory SQLite db.  Data for this db is seeded from a json file on SetUp.  
+Using NUnit for integration tests against the SQLite db.  Data for this db is seeded from a json file.  
